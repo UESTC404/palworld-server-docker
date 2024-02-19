@@ -18,20 +18,7 @@ services:
         published: 25575
         protocol: tcp
         mode: host  # Required if you want to use RCON
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - PORT=8211  # Optional but recommended
-      - PLAYERS=32  # Optional but recommended
-      - SERVER_PASSWORD=@404@404  # Optional but recommended
-      - MULTITHREADING=true
-      - RCON_ENABLED=true
-      - RCON_PORT=25575
-      - TZ=Asia/Shanghai
-      - ADMIN_PASSWORD=@404@404@404
-      - COMMUNITY=true  # Enable this if you want your server to show up in the community servers tab, USE WITH SERVER_PASSWORD!
-      - PUBLIC_IP=
-      - SERVER_NAME=[ES404]PalCompany
-      - SERVER_DESCRIPTION=palworld-server-docker by Embedded Steam Studio
+    env_file:
+      - .env
     volumes:
       - ./palworld:/palworld/
