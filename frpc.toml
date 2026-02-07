@@ -1,0 +1,36 @@
+# ===== frpc 客户端通用配置 =====
+serverAddr = "es404.online"
+serverPort = 7000
+
+[auth]
+# 与 frps 保持一致
+method = "token"
+token  = "example_passwd"
+
+# 启用 frpc 本地管理 UI，便于热更新配置：frpc reload
+[webServer]
+addr = "127.0.0.1"
+port = 7400
+user = "admin"
+password = "admin"
+
+[[proxies]]
+name          = "palworld-udp"
+type          = "udp"
+localIP       = "127.0.0.1"      # Palworld 服务器运行在同一台机器上
+localPort     = 8211
+remotePort    = 8211
+
+[[proxies]]
+name          = "palworld-tcp"
+type          = "tcp"
+localIP       = "127.0.0.1"      # Palworld 服务器运行在同一台机器上
+localPort     = 8212
+remotePort    = 8212
+
+[[proxies]]
+name          = "palworld-api"
+type          = "udp"
+localIP       = "127.0.0.1"      # Palworld 服务器运行在同一台机器上
+localPort     = 27015
+remotePort    = 27015

@@ -26,3 +26,10 @@ services:
       CROSSPLAY_PLATFORMS: "(Steam,Xbox,PS5,Mac)"
     volumes:
       - ./palworld:/palworld/
+
+  frpc:
+    image: snowdreamtech/frpc
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./frpc.toml:/etc/frp/frpc.toml
