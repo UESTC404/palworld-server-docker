@@ -9,21 +9,8 @@ services:
       - 8211:8211/udp
       - 27015:27015/udp  # Required if you want your server to show up in the community servers tab
       - 8212:8212/tcp  # REST API enabled port, enabled by default. DO NOT PORT FORWARD THIS.
-    environment:
-      PUID: 1000
-      PGID: 1000
-      PORT: 8211  # Optional but recommended
-      PLAYERS: 16  # Optional but recommended
-      SERVER_PASSWORD: "@404@404"  # Optional but recommended
-      MULTITHREADING: true
-      REST_API_ENABLED: true
-      REST_API_PORT: 8212
-      TZ: "UTC"
-      ADMIN_PASSWORD: "@404@404@404"
-      COMMUNITY: false  # Enable this if you want your server to show up in the community servers tab, USE WITH SERVER_PASSWORD!
-      SERVER_NAME: "[ES404]PalCompany"
-      SERVER_DESCRIPTION: "palworld-server-docker by Embedded Steam Studio"
-      CROSSPLAY_PLATFORMS: "(Steam,Xbox,PS5,Mac)"
+    env_file:
+      - .env
     volumes:
       - ./palworld:/palworld/
 
