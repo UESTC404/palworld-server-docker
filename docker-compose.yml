@@ -20,3 +20,23 @@ services:
     network_mode: host
     volumes:
       - ./frpc.toml:/etc/frp/frpc.toml
+
+  pst:
+    image: jokerwho/palworld-server-tool:latest
+    restart: unless-stopped
+    container_name: pst
+    depends_on:
+      - palworld
+    ports:
+      - 8080:8080
+    environment:
+      WEB__PASSWORD: ${PST_WEB_PASSWORD}
+      RCON__ADDRESS: ${PST_RCON_ADDRESS}
+      RCON__PASSWORD: ${PST_RCON_PASSWORD}
+      REST__ADDRESS: ${PST_REST_ADDRESS}
+      REST__PASSWORD: ${PST_REST_PASSWORD}
+      SAVE__PATH: ${PST_SAVE_PATH}
+      SAVE__SYNC_INTERVAL: ${PST_SAVE_SYNC_INTERVAL}
+    volumes:
+      - ./palworld/Pal/Saved:/game
+      - ./backups:/app/backups
